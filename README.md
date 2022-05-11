@@ -25,3 +25,12 @@
 * author：shengdao
 * description：完成算法类的部分编写
 * version：1.0->1.1
+
+
+
+------
+
+* time：5/11 16:28
+* author：shengdao
+* description：完成算法类的编写，编写详细信息的按钮，完成建图页面的编写，剩下两个算法按钮的监听器
+* version：1.1->2.0
