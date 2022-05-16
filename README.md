@@ -34,3 +34,12 @@
 * author：shengdao
 * description：完成算法类的编写，编写详细信息的按钮，完成建图页面的编写，剩下两个算法按钮的监听器
 * version：1.1->2.0
+
+------
+
+
+
+* time：5.17 0：34
+* author：shengdao
+* description：添加算法演示的基础绘画面板（笔，相关变量需要补全）与画板类（尚未编写）
+* version：2.0->2.1

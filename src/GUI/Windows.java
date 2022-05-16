@@ -84,6 +84,7 @@ public class Windows {
                 submit.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        //注意特殊案例——1个节点，0条边的情况
                         al.cnt++;
                         if(al.cnt>al.m) inputjf.dispose();
                         String u_str=jt1.getText();

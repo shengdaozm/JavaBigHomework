@@ -1,7 +1,7 @@
 package Algorithm;
 
 public class Graph {
-    public final int inf=0x3f3f3f3f;
+    private final int inf=0x3f3f3f3f;
     public Edge e[];
     public int c[][];
     public int u,v,w;
@@ -23,5 +23,21 @@ public class Graph {
         c[u][v]=Math.min(c[u][v],w);
         e[pos]=new Edge(u,v,w);
         ++pos;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public int[][] getC() {
+        return c;
+    }
+
+    public Edge[] getE() {
+        return e;
     }
 }
