@@ -1,11 +1,14 @@
 package Algorithm;
 
+import java.util.List;
+
 public class Graph {
-    private final int inf=0x3f3f3f3f;
+    private final int inf=Integer.MIN_VALUE;
     public Edge e[];
     public int c[][];
     public int u,v,w;
     public int n,m,pos;
+    public List<String> vex;
 
     Graph(int n,int m) {
         this.n=n;
@@ -25,19 +28,26 @@ public class Graph {
         ++pos;
     }
 
+    //获得节点数
     public int getN() {
         return n;
     }
 
+    //获得边的数目
     public int getM() {
         return m;
     }
 
+    //获得邻接矩阵
     public int[][] getC() {
         return c;
     }
 
+    //获得边集数组
     public Edge[] getE() {
         return e;
     }
+
+    //获取节点数组
+    public List<String> getVex() { return vex;}
 }

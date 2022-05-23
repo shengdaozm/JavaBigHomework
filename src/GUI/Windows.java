@@ -40,6 +40,10 @@ public class Windows {
                 String n_str = edgescountText.getText();
                 String m_str = vexText.getText();
                 al.algo_init(Integer.parseInt(n_str), Integer.parseInt(m_str));
+                //异常情况处理
+                if(Integer.parseInt(n_str)==1) {
+
+                }
                 //弹出新窗口，读入信息进行建图操作
                 JButton submit;
                 JLabel jl1, jl2, jl3;
@@ -103,24 +107,24 @@ public class Windows {
         });
         panel.add(inputButton);
 
-        //算法1演示
+        //算法1演示——prim
         JButton Button1 = new JButton("Prim算法演示");
         Button1.setBounds(320, 100, 150, 25);
         Button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Prim算法演示",-1);
             }
         });
         panel.add(Button1);
 
-        //算法2演示
+        //算法2演示——
         JButton Button2 = new JButton("Kruskal算法演示");
         Button2.setBounds(320, 130, 150, 25);
         Button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Kruskal算法演示",-1);
             }
         });
         panel.add(Button2);

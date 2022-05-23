@@ -1,18 +1,20 @@
 package GUI;
 
+import Algorithm.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import Algorithm.*;
+
 
 public class MyPanel extends JPanel {
 
-    private final List<String> vex;
-    private final int vexNum;
-    private final int edgeNum;
-    private final EdgeData[] edgeData;
+    private final List<String> vex; //点集名称
+    private final int vexNum; //点的数目
+    private final int edgeNum; //边的数目
+    private final Edge[] edgeData; //缓存边的信息
 
     public String judge;
     public Boolean isEnd = false;
@@ -20,6 +22,7 @@ public class MyPanel extends JPanel {
     public int v1 = -1,v2 = -1;
     public Color[] vexColors = new Color[6];
     public Color[] edgeColors = new Color[15];
+    public String staus;
 
     public MyPanel(Graph graph) {
         super();
@@ -29,14 +32,14 @@ public class MyPanel extends JPanel {
         int[][] c = graph.getC();
 
         // 创建一个边实体类
-        edgeData = new EdgeData[edgeNum];
+        edgeData = new Edge[edgeNum];
         int index = 0;
 
         // 获取边信息，存入边实体类中
         for (int i = 0;i < vexNum;i++) {
             for (int j = i + 1;j < vexNum;j++) {
                 if (c[i][j] != 0 && c[i][j] != Integer.MAX_VALUE) {
-                    edgeData[index++] = new EdgeData(vex.get(i),vex.get(j), c[i][j]);
+                    edgeData[index++] = new Edge(vex.get(i),vex.get(j), c[i][j]);
                 }
             }
         }

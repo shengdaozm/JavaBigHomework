@@ -43,3 +43,12 @@
 * author：shengdao
 * description：添加算法演示的基础绘画面板（笔，相关变量需要补全）与画板类（尚未编写），添加脚本快捷提交功能
 * version：2.0->2.1
+
+------
+
+
+
+* time：5.23  22：46
+* author：shengdao
+* description：完成算法演示界面类的构造，具体交互细节尚未完成，有待改进，增加需要考虑的优化小问题。
+* version：2.1->3.1
