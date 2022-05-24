@@ -12,7 +12,7 @@ public class Kruskal {
      */
     UnionFind uf;
 
-    int[][] kruskal(Graph g) {
+    public int[][] mit_kruskal(Graph g) {
         int ans[][] = new int[g.n - 1][2];
         uf = new UnionFind(g.n);
         Arrays.sort(g.e, new Comparator<Edge>() {
@@ -30,5 +30,15 @@ public class Kruskal {
             }
         }
         return ans;
+    }
+
+    //将最小生成树的边改成展示的字符串类型
+    public Edge[] changed_mit_kruskal(Graph g) {
+        Edge[] edges=new Edge[g.getN()-1];
+        int ans[][]=mit_kruskal(g);
+        for(int i=0;i<g.getN()-1;++i) {
+            edges[i]=new Edge("V"+ans[i][0],"V"+ans[i][1],g.c[ans[i][0]][ans[i][1]]);
+        }
+        return edges;
     }
 }

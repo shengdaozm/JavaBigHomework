@@ -6,8 +6,9 @@ public class Prim {
      * @param g 输入的图的信息
      * @return 生成的最小边
      */
-    public final int inf=0x3f3f3f3f;
-    int [][] prim(Graph g) {
+    public final int inf=Integer.MIN_VALUE;
+
+    public int [][] mit_prim(Graph g) {
         int ans[][]=new int[g.n-1][2];
         Boolean s[] = new Boolean[g.n]; //标记数组
         int lowcost[] = new int[g.n]; //每个节点的最小花费
@@ -47,5 +48,15 @@ public class Prim {
             }
         }
         return ans;
+    }
+
+    //将最小生成树的边改成展示的字符串类型
+    public Edge[] changed_mit_prim(Graph g) {
+        Edge[] edges=new Edge[g.getN()-1];
+        int ans[][]=mit_prim(g);
+        for(int i=0;i<g.getN()-1;++i) {
+            edges[i]=new Edge("V"+ans[i][0],"V"+ans[i][1],g.c[ans[i][0]][ans[i][1]]);
+        }
+        return edges;
     }
 }

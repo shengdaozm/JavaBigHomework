@@ -132,7 +132,7 @@ public class MyPanel extends JPanel {
             g.setColor(edgeColors[i]);
             // 画边
             g.drawLine(es[0],es[1],es[2],es[3]);
-            g.drawString(String.valueOf(edgeData[i].weight),es[4],es[5]);
+            g.drawString(String.valueOf(edgeData[i].val),es[4],es[5]);
         }
 
         // 展示算法名字

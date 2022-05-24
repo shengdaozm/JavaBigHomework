@@ -1,6 +1,6 @@
 package Algorithm;
 
-import java.util.List;
+import java.util.*;
 
 public class Graph {
     private final int inf=Integer.MIN_VALUE;
@@ -20,6 +20,7 @@ public class Graph {
             for(int j=0;j<n;++j) {
                 c[i][j]=inf;
             }
+        vex = new ArrayList<>();
     }
 
     void init(int u,int v,int w) {
@@ -28,6 +29,11 @@ public class Graph {
         ++pos;
     }
 
+    public void produce_vex() {
+        for(int i=0;i<n;++i) {
+        vex.add("V"+i);
+        }
+    }
     //获得节点数
     public int getN() {
         return n;

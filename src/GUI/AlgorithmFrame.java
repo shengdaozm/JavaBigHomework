@@ -18,6 +18,10 @@ public class AlgorithmFrame {
 
     public int firstVex=0;
 
+    //下一步按钮的计数器，
+    // 当计数器的数量到达最小边的数量时候，将下一步的按钮设置为不可用
+    public int count=0;
+
     //构造函数完成算法演示的面板基本布局
     public AlgorithmFrame(Graph graph, String name, long time) {
         this.algoName = name;
@@ -33,10 +37,9 @@ public class AlgorithmFrame {
         //算法演示窗口分开成上下两个部分
         jf.setLayout(new GridLayout(2,1));
 //      +-------------------------------初始化第一个面板myPanel->用于显示图形和演示过程--------------------------------+
-        // 根据time值选择对应演示方式（手动演示time为-1）->初始化paintG
         this.printgraph = new PreformGUIPrinting(graph,1000);
         // 创建有图结构的面板
-        printgraph.myPanel = new MyPanel(graph);
+        printgraph.myPanel = new MyPanel(graph);//在这一步，图的买哪般已经画好了
 //      +----------------------------------------------------------------------------+
 //      +--------------------------------初始化第二个面板panel->用于显示按钮和文字标签----------------------------------+
 
@@ -71,45 +74,22 @@ public class AlgorithmFrame {
 
 //        +--------------------------------------------监听事件-----------------------------------------------+
 
-        // 建立两个线程，分别执行两个算法
-        Thread algo1 = new Thread() {
-            @Override
-            public void run() {
-                // 算法执行前先把原图画出来
-                printgraph.drawGraph(null);
-                printgraph.graphPainting("P",firstVex);
-            }
-        };
-
-        Thread algo2 = new Thread() {
-            @Override
-            public void run() {
-                // 开始执行前先把原图画出来
-                printgraph.drawGraph(null);
-                printgraph.graphPainting("K",-1);
-            }
-        };
-        /*
-          每次对子线程进行操作前都要先让主线程休眠一段时间
-         */
         // 开始演示按键
         startBtn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("开始演示算法");
                     if ("Prim算法演示".equals(algoName)) {
-                        algo1.start();
+                        // 算法执行前先把原图画出来
+                        printgraph.drawGraph(null);
+                        printgraph.graphPainting("P",firstVex);
                     }else {
-                        algo2.start();
+                        // 开始执行前先把原图画出来
+                        printgraph.drawGraph(null);
+                        printgraph.graphPainting("K",-1);
                     }
                     isStart = true;
 
-                    // 如果是手动演示，则需要开始演示后就暂停演示
-                    if (time == -1) {
-                        //Thread.sleep(100);
-                        // 暂停线程
-                        // printgraph.pauseThread();
-                    }
                     // 执行完开始按键后把按键置为不可点击
                     startBtn.setEnabled(false);
             }
@@ -119,24 +99,15 @@ public class AlgorithmFrame {
         nextBtn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("下一步");
-
-                try {
+                System.out.println("下一步");
                     // 演示开始后再进行操作
-                    if (isStart) {
-                        // 先恢复进程，过0.1秒后再暂停线程
-                        Thread.sleep(100);
-                        printgraph.resumeThread();
-                        Thread.sleep(100);
-                        printgraph.pauseThread();
-                        Thread.sleep(100);
-                    }
+                if (isStart) {
+                    //实现的效果就是每点击一下按钮，算法的演示就会进行一次
+                    //-----------------------------记得填写
+                }
                     // 演示结束后关闭按键
-                    if (paintG.myPanel.isEnd) {
-                        nextBtn.setEnabled(false);
-                    }
-                } catch(InterruptedException e1) {
-                    e1.printStackTrace();
+                if (printgraph.myPanel.isEnd) {
+                    nextBtn.setEnabled(false);
                 }
             }
         });
@@ -145,37 +116,3 @@ public class AlgorithmFrame {
         jf.setVisible(true);
     }
 }
-
-//暂停按钮的注释
-
-/*
-        // 暂定/继续按键
-        pauseBtn.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("暂停/继续演示");
-
-                try {
-                    if (!isPause) {
-                        // 暂停线程
-                        Thread.sleep(100);
-                        paintG.pauseThread();
-                        isPause = true;
-                    }else {
-                        // 恢复线程
-                        Thread.sleep(100);
-                        paintG.resumeThread();
-                        isPause = false;
-                    }
-
-                    // 演示结束，关闭按键
-                    if (paintG.myPanel.isEnd) {
-                        pauseBtn.setEnabled(false);
-                    }
-                } catch(InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-* */

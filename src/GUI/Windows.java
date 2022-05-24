@@ -90,7 +90,10 @@ public class Windows {
                     public void actionPerformed(ActionEvent e) {
                         //注意特殊案例——1个节点，0条边的情况
                         al.cnt++;
-                        if(al.cnt>al.m) inputjf.dispose();
+                        if(al.cnt>al.m) {
+                            inputjf.dispose();
+                            al.g.produce_vex();
+                        }
                         String u_str=jt1.getText();
                         String v_str=jt1.getText();
                         String w_str=jt1.getText();
@@ -118,7 +121,7 @@ public class Windows {
         });
         panel.add(Button1);
 
-        //算法2演示——
+        //算法2演示——Kruskal
         JButton Button2 = new JButton("Kruskal算法演示");
         Button2.setBounds(320, 130, 150, 25);
         Button2.addActionListener(new ActionListener() {
@@ -129,7 +132,7 @@ public class Windows {
         });
         panel.add(Button2);
 
-        //右侧功能表按钮4-关于我们
+        //右侧功能表按钮3-关于我们
         JButton Button3 = new JButton("关于我们");
         Button3.setBounds(320, 160, 150, 25);
         Button3.addActionListener(new ActionListener() {
