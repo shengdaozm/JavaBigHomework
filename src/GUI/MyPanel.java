@@ -30,7 +30,6 @@ public class MyPanel extends JPanel {
         this.vexNum = graph.getN();
         this.edgeNum = graph.getM();
         int[][] c = graph.getC();
-
         // 创建一个边实体类
         edgeData = new Edge[edgeNum];
         int index = 0;
@@ -43,7 +42,7 @@ public class MyPanel extends JPanel {
                 }
             }
         }
-
+        //初始状态全部置成黑色
         Arrays.fill(vexColors, Color.BLACK);
         Arrays.fill(edgeColors,Color.BLACK);
     }
@@ -105,7 +104,6 @@ public class MyPanel extends JPanel {
         for (int i = 0;i < edgeNum;i++) {
             // v1，v2记录每条边的邻接顶点
             int v1 = 0,v2 = 0;
-
             // 获取当前边邻接顶点的位置下标
             for (int k = 0;k < vex.size();k++) {
                 if (vex.get(k).equals(edgeData[i].start)) {

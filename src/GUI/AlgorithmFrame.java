@@ -39,7 +39,7 @@ public class AlgorithmFrame {
 //      +-------------------------------初始化第一个面板myPanel->用于显示图形和演示过程--------------------------------+
         this.printgraph = new PreformGUIPrinting(graph,1000);
         // 创建有图结构的面板
-        printgraph.myPanel = new MyPanel(graph);//在这一步，图的买哪般已经画好了
+        printgraph.myPanel = new MyPanel(graph);//在这一步，图的实际已经画好了
 //      +----------------------------------------------------------------------------+
 //      +--------------------------------初始化第二个面板panel->用于显示按钮和文字标签----------------------------------+
 
@@ -51,14 +51,21 @@ public class AlgorithmFrame {
         JButton nextBtn = new JButton("下一步");
 
         JLabel label  = new JLabel("<html><br><br><br>" +
-                "------------------------------------" +
+                "------------------" +
                 "算法演示过程控制端" +
-                "------------------------------------" +
+                "------------------" +
                 "<html>");
-
-        panel.add(label);
-        panel.add(startBtn);
-        panel.add(nextBtn);
+        //设置标签的大小
+        //Dimension dimension=new Dimension(85,40);
+        //label.setPreferredSize(dimension);
+        Box btnbox=Box.createHorizontalBox();//左右显示的box
+        Box upbox=Box.createVerticalBox();//上下显示的box
+        btnbox.add(startBtn);btnbox.add(nextBtn);
+        upbox.add(label);upbox.add(btnbox);
+        panel.add(upbox);
+//        panel.add(label);
+//        panel.add(startBtn);
+//        panel.add(nextBtn);
 //      +----------------------------------------------------------------------------+
 
         // 在窗口中加入两个面板

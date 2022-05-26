@@ -3,7 +3,7 @@ package Algorithm;
 import java.util.*;
 
 public class Graph {
-    private final int inf=Integer.MIN_VALUE;
+    private final int inf=Integer.MAX_VALUE;
     public Edge e[];
     public int c[][];
     public int u,v,w;
@@ -25,6 +25,7 @@ public class Graph {
 
     void init(int u,int v,int w) {
         c[u][v]=Math.min(c[u][v],w);
+        c[v][u]=c[u][v];
         e[pos]=new Edge(u,v,w);
         ++pos;
     }
@@ -35,9 +36,7 @@ public class Graph {
         }
     }
     //获得节点数
-    public int getN() {
-        return n;
-    }
+    public int getN() { return n; }
 
     //获得边的数目
     public int getM() {
@@ -54,6 +53,6 @@ public class Graph {
         return e;
     }
 
-    //获取节点数组
+    //获取节点名称数组
     public List<String> getVex() { return vex;}
 }

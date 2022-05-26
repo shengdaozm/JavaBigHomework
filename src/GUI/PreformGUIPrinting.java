@@ -27,7 +27,7 @@ public class PreformGUIPrinting {
      */
     public PreformGUIPrinting(Graph graph, long time) {
         this.graph = graph;
-        this.vex = graph.getVex();//@@@@@@@@@@@这一个方法需要继续编写
+        this.vex = graph.getVex();
         this.sleepTime = time;
 
         // 把图结构传入算法实现类中
@@ -52,9 +52,7 @@ public class PreformGUIPrinting {
             }
         }
 
-        //System.out.println("*******");
         myPanel.repaint();
-        //System.out.println("&&&&");
         try {
             Thread.sleep(sleepTime);
         } catch (InterruptedException e) {

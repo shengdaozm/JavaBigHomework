@@ -91,13 +91,14 @@ public class Windows {
                         //注意特殊案例——1个节点，0条边的情况
                         al.cnt++;
                         if(al.cnt>al.m) {
-                            inputjf.dispose();
                             al.g.produce_vex();
+                            inputjf.dispose();
                         }
                         String u_str=jt1.getText();
-                        String v_str=jt1.getText();
-                        String w_str=jt1.getText();
+                        String v_str=jt2.getText();
+                        String w_str=jt3.getText();
                         al.getegde(Integer.parseInt(u_str),Integer.parseInt(v_str),Integer.parseInt(w_str));
+                        System.out.println(Integer.parseInt(u_str)+" "+Integer.parseInt(v_str)+" "+Integer.parseInt(w_str));
                         jt1.setText("");
                         jt2.setText("");
                         jt3.setText("");
@@ -186,7 +187,6 @@ public class Windows {
     public static void main(String[] args){
         Windows w=new Windows();
         w.control();
-
     }
 
 }
