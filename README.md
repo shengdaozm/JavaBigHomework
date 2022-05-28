@@ -52,3 +52,14 @@
 * author：shengdao
 * description：完成算法演示界面类的构造，具体交互细节尚未完成，有待改进，增加需要考虑的优化小问题。
 * version：2.1->3.1
+
+* 
+
+------
+
+
+
+* time：5.29  1：58
+* author：shengdao
+* description：初代版本已经完成，需要加以优化与美化
+* version：3.1->4.0
