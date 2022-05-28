@@ -63,10 +63,6 @@ public class AlgorithmFrame {
         btnbox.add(startBtn);btnbox.add(nextBtn);
         upbox.add(label);upbox.add(btnbox);
         panel.add(upbox);
-//        panel.add(label);
-//        panel.add(startBtn);
-//        panel.add(nextBtn);
-//      +----------------------------------------------------------------------------+
 
         // 在窗口中加入两个面板
         jf.add(printgraph.myPanel);
@@ -81,24 +77,48 @@ public class AlgorithmFrame {
 
 //        +--------------------------------------------监听事件-----------------------------------------------+
 
+        // 建立两个线程，分别执行两个算法
+        Thread algo1 = new Thread() {
+            @Override
+            public void run() {
+                // 算法执行前先把原图画出来
+                printgraph.drawGraph(null);
+                printgraph.graphPainting("P",firstVex);
+            }
+        };
+
+        Thread algo2 = new Thread() {
+            @Override
+            public void run() {
+                // 开始执行前先把原图画出来
+                printgraph.drawGraph(null);
+                printgraph.graphPainting("K",-1);
+            }
+        };
+
         // 开始演示按键
         startBtn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("开始演示算法");
-                    if ("Prim算法演示".equals(algoName)) {
-                        // 算法执行前先把原图画出来
-                        printgraph.drawGraph(null);
-                        printgraph.graphPainting("P",firstVex);
-                    }else {
-                        // 开始执行前先把原图画出来
-                        printgraph.drawGraph(null);
-                        printgraph.graphPainting("K",-1);
-                    }
-                    isStart = true;
+                System.out.println("开始演示算法");
 
-                    // 执行完开始按键后把按键置为不可点击
-                    startBtn.setEnabled(false);
+                try {
+                       if ("Prim算法演示".equals(algoName)) {
+                           algo1.start();
+                       }else {
+                           algo2.start();
+                       }
+                isStart = true;
+
+                // 手动演示，则需要开始演示后就暂停演示
+                Thread.sleep(100);
+                // 暂停线程
+                printgraph.pauseThread();
+                // 执行完开始按键后把按键置为不可点击
+                startBtn.setEnabled(false);
+                } catch(InterruptedException e1) {
+                       e1.printStackTrace();
+                }
             }
         });
 
@@ -107,14 +127,24 @@ public class AlgorithmFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("下一步");
+
+                try {
                     // 演示开始后再进行操作
-                if (isStart) {
-                    //实现的效果就是每点击一下按钮，算法的演示就会进行一次
-                    //-----------------------------记得填写
-                }
+                    if (isStart) {
+                        // 先恢复进程，过0.1秒后再暂停线程
+                        Thread.sleep(100);
+                        printgraph.resumeThread();
+                        Thread.sleep(100);
+                        printgraph.pauseThread();
+                        Thread.sleep(100);
+                    }
+
                     // 演示结束后关闭按键
-                if (printgraph.myPanel.isEnd) {
-                    nextBtn.setEnabled(false);
+                    if (printgraph.myPanel.isEnd) {
+                        nextBtn.setEnabled(false);
+                    }
+                } catch(InterruptedException e1) {
+                    e1.printStackTrace();
                 }
             }
         });

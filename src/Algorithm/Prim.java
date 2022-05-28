@@ -6,7 +6,7 @@ public class Prim {
      * @param g 输入的图的信息
      * @return 生成的最小边
      */
-    public final int inf=Integer.MIN_VALUE;
+    public final int inf=Integer.MAX_VALUE;
 
     public int [][] mit_prim(Graph g) {
         int ans[][]=new int[g.n-1][2];
@@ -54,6 +54,9 @@ public class Prim {
     public Edge[] changed_mit_prim(Graph g) {
         Edge[] edges=new Edge[g.getN()-1];
         int ans[][]=mit_prim(g);
+        for(int i=0;i<g.getN()-1;++i) {
+            System.out.println(ans[i][0]+" "+ans[i][1]);
+        }
         for(int i=0;i<g.getN()-1;++i) {
             edges[i]=new Edge("V"+ans[i][0],"V"+ans[i][1],g.c[ans[i][0]][ans[i][1]]);
         }

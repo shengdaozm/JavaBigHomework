@@ -7,8 +7,13 @@ public class algorithm {
     public Kruskal k;
     public Prim p;
 
-    public algorithm() {}
+    public algorithm() {
+        k=new Kruskal();
+        p=new Prim();
+    }
     public algorithm(Graph g) {
+        k=new Kruskal();
+        p=new Prim();
         this.g=g;
     }
     public void algo_init(int _n,int _m) {

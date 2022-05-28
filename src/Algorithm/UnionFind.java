@@ -25,7 +25,7 @@ public class UnionFind {
         }
     }
 
-    Boolean unite(int x, int y) {
+    public Boolean unite(int x, int y) {
         x = findset(x);
         y = findset(y);
         if (x == y) return false;
@@ -40,7 +40,7 @@ public class UnionFind {
         return true;
     }
 
-    int getSetCount() {return setCount;}
+    public int getSetCount() {return setCount;}
 
     Boolean connected(int x, int y) {
         return findset(x) == findset(y);
