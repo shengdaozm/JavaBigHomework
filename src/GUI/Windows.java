@@ -5,10 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Algorithm.*;
 
+/**
+ * 程序的主界面
+ */
 public class Windows {
     JFrame jf;
     algorithm al;
 
+    /**
+     * 主界面的布局设置
+     * @param panel Jpanel对象
+     */
     public void placeComponents(JPanel panel){
         panel.setLayout(null);
 
@@ -171,6 +178,9 @@ public class Windows {
         panel.add(Button4);
     }
 
+    /**
+     * 主界面的面板控制
+     */
     public void control(){
         al=new algorithm();
         jf = new JFrame("最小代价生成数算法演示");
@@ -182,11 +192,4 @@ public class Windows {
         placeComponents(panel);
         jf.setVisible(true);
     }
-
-    //测试类
-    public static void main(String[] args){
-        Windows w=new Windows();
-        w.control();
-    }
-
 }

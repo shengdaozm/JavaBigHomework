@@ -6,6 +6,9 @@ import Algorithm.Edge;
 
 import java.util.List;
 
+/**
+ * 图形绘制，更改的实际操作的类
+ */
 public class PreformGUIPrinting {
 
     public MyPanel myPanel;
@@ -14,16 +17,13 @@ public class PreformGUIPrinting {
     private final List<String> vex;
     private final Graph graph;
     private algorithm algo=new algorithm();
-
-    /**
-     * 用于控制线程（绘图）暂停或继续
-     */
     private final Object lock = new Object();
     private volatile boolean pause = false;
 
     /**
-     * 构造器，传入图结构和算法名字
-     * @param graph 图结构
+     * 构造函数传入图结构和算法名字
+     * @param graph 图的基本信息
+     * @param time 执行算法的计时时刻
      */
     public PreformGUIPrinting(Graph graph, long time) {
         this.graph = graph;
@@ -36,7 +36,7 @@ public class PreformGUIPrinting {
 
     /**
      * 执行面板中的paint方法，使用repaint()重复画图
-     * @param vs 执行Prim算法每次得到的边（两个顶点）
+     * @param vs 执行算法每次得到的边（两个顶点）
      */
     public void drawGraph(String[] vs) {
         if (vs != null) {
@@ -63,7 +63,7 @@ public class PreformGUIPrinting {
     /**
      * 绘制相应算法的图形
      * @param algoName 算法名字(P/K)
-     * @param firstVex Prim算法起始顶点
+     * @param firstVex Prim算法起始顶点，设置为0
      */
     public void graphPainting(String algoName, int firstVex) {
         String[] content = new String[2];
@@ -111,15 +111,7 @@ public class PreformGUIPrinting {
     }
 
     /**
-     * 暂停线程
-     *  - 这个方法只能在run 方法中实现，不然会阻塞主线程，导致页面无响应
-     *
-     *  - 用wait()方法暂停线程和notify()方法唤醒线程，而不用Java已弃用的suspend()和resume()，原因：
-     *      1） suspend() 需要与 resume() 搭配使用，使用不当时，极易造成公共的同步对象的独占，使得其他线程无法访问公共同步对象。
-     *          suspend() 暂停线程时，被暂停的线程还会继续的占用同步对象，不释放锁。
-     *          （也就是说调用suspend方法，线程会暂停下来，但不会释放锁，其他线程就不能获取锁定的资源，除非调用resume方法恢复线程->臭流氓行为。
-     *              对任何线程来说，如果它们想恢复目标线程，同时又试图使用任何一个锁定的资源，就会造成死锁）
-     *      2）在使用 suspend() 和 resume() 方法时，也容易出现因为线程的暂停而导致数据不同步的情况。
+     * 线程的控制
      */
     public void onPause() {
         // 创建一把锁对象lock，调用wait()会释放锁，同时暂停线程；调用notify()函数会唤醒锁，从而重新获取这把锁
@@ -133,14 +125,14 @@ public class PreformGUIPrinting {
     }
 
     /**
-     * 调用该方法实现线程的暂停
+     * 实现执行算法线程的暂停
      */
     public void pauseThread() {
         pause = true;
     }
 
     /**
-     * 调用该方法实现恢复线程的运行
+     * 实现执行算法线程的恢复
      */
     public void resumeThread() {
         pause = false;
@@ -149,5 +141,4 @@ public class PreformGUIPrinting {
             lock.notify();
         }
     }
-
 }

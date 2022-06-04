@@ -3,15 +3,17 @@ package Algorithm;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * 执行Kruskal算法
+ */
 public class Kruskal {
+    UnionFind uf;
+
     /**
      * Kruskal算法计算过程
-     *
      * @param g 输入的图的信息
      * @return 生成的最小边
      */
-    UnionFind uf;
-
     public int[][] mit_kruskal(Graph g) {
         int ans[][] = new int[g.n - 1][2];
         uf = new UnionFind(g.n);
@@ -32,7 +34,11 @@ public class Kruskal {
         return ans;
     }
 
-    //将最小生成树的边改成展示的字符串类型
+    /**
+     * 将最小生成树的边改成展示的字符串类型
+     * @param g 输入图的基本信息
+     * @return 生成树的最小边的字符串表示
+     */
     public Edge[] changed_mit_kruskal(Graph g) {
         Edge[] edges=new Edge[g.getN()-1];
         int ans[][]=mit_kruskal(g);

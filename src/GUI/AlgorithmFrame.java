@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * 算法演示界面的窗口管理类
+ */
 public class AlgorithmFrame {
     private final Position pos=new Position();
     public PreformGUIPrinting printgraph;
@@ -22,7 +25,12 @@ public class AlgorithmFrame {
     // 当计数器的数量到达最小边的数量时候，将下一步的按钮设置为不可用
     public int count=0;
 
-    //构造函数完成算法演示的面板基本布局
+    /**
+     * 构造函数完成算法演示的面板基本布局
+     * @param graph 图的基本信息
+     * @param name 调用算法的名称
+     * @param time 执行步数的间隔时刻
+     */
     public AlgorithmFrame(Graph graph, String name, long time) {
         this.algoName = name;
 

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 图的结构绘制面板控制
+ */
 
 public class MyPanel extends JPanel {
 
@@ -24,6 +27,10 @@ public class MyPanel extends JPanel {
     public Color[] edgeColors = new Color[15];
     public String staus;
 
+    /**
+     * 构造函数完成初始界面的图形参数设置
+     * @param graph 图的基本信息
+     */
     public MyPanel(Graph graph) {
         super();
         this.vex = graph.getVex();
@@ -48,6 +55,9 @@ public class MyPanel extends JPanel {
     }
 
     @Override
+    /**
+     * 重新渲染图的绘制入口
+     */
     public void paint(Graphics g) {
         // 调用父类的paint，一定要写
         super.paint(g);
@@ -55,6 +65,10 @@ public class MyPanel extends JPanel {
         paintGraph(g);
     }
 
+    /**
+     * 基础图的形状绘制
+     * @param g 图的基本信息
+     */
     public void paintGraph(Graphics g) {
 
         // 改变面板中字体样式

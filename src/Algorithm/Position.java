@@ -2,15 +2,17 @@ package Algorithm;
 
 import java.util.*;
 
+/**
+ * 存放于心设定好的边与点的信息
+ */
 public class Position {
 
     public Map<Integer,int[]> vMap;
     public Map<String,int[]> eMap;
 
     /**
-     * 构造方法
-     *  - 提前预处理各个边与点在画布上的位置
-     *  - 初始化参数顶点Map和边Map
+     * position的构造方法
+     * 提前设置每一个点与边的位置
      */
     public Position() {
 

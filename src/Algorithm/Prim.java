@@ -1,13 +1,16 @@
 package Algorithm;
 
+/**
+ * 执行prim算法
+ */
 public class Prim {
+    public final int inf=Integer.MAX_VALUE;
+
     /**
      * prim算法计算过程
      * @param g 输入的图的信息
      * @return 生成的最小边
      */
-    public final int inf=Integer.MAX_VALUE;
-
     public int [][] mit_prim(Graph g) {
         int ans[][]=new int[g.n-1][2];
         Boolean s[] = new Boolean[g.n]; //标记数组
@@ -50,7 +53,11 @@ public class Prim {
         return ans;
     }
 
-    //将最小生成树的边改成展示的字符串类型
+    /**
+     * 将最小生成树的边改成展示的字符串类型
+     * @param g 输入图的基本信息
+     * @return 最小边的字符串形式
+     */
     public Edge[] changed_mit_prim(Graph g) {
         Edge[] edges=new Edge[g.getN()-1];
         int ans[][]=mit_prim(g);
