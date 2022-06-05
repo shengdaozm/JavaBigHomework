@@ -18,7 +18,7 @@ public class Graph {
      * @param n 建图的点的个数
      * @param m 建图的边的数目
      */
-    Graph(int n,int m) {
+    public Graph(int n,int m) {
         this.n=n;
         this.m=m;
         pos=0;
@@ -88,4 +88,12 @@ public class Graph {
      * @return 节点名称数组
      */
     public List<String> getVex() { return vex;}
+
+    /**
+     * 将graph中的数据清零
+     */
+    public void clear() {
+        e=null;
+        c=null;
+    }
 }

@@ -15,7 +15,6 @@ public class AlgorithmFrame {
     public PreformGUIPrinting printgraph;
     //执行算法的名字
     private final String algoName;
-    //可以删除
     private boolean isPause = false;
     private boolean isStart = false;
 
@@ -38,18 +37,16 @@ public class AlgorithmFrame {
         final JFrame jf = new JFrame();
         jf.setTitle(name);
         jf.setResizable(false);
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // 设置窗口的大小和布局
         jf.setSize(1000, 700);
         //算法演示窗口分开成上下两个部分
         jf.setLayout(new GridLayout(2,1));
-//      +-------------------------------初始化第一个面板myPanel->用于显示图形和演示过程--------------------------------+
+        //初始化第一个面板myPanel->用于显示图形和演示过程--------------------------------+
         this.printgraph = new PreformGUIPrinting(graph,1000);
         // 创建有图结构的面板
         printgraph.myPanel = new MyPanel(graph);//在这一步，图的实际已经画好了
-//      +----------------------------------------------------------------------------+
-//      +--------------------------------初始化第二个面板panel->用于显示按钮和文字标签----------------------------------+
+        //初始化第二个面板panel->用于显示按钮和文字标签----------------------------------+
 
         // 创建第二个面板，用于显示按钮和标签文字
         JPanel panel = new JPanel();
@@ -64,8 +61,8 @@ public class AlgorithmFrame {
                 "------------------" +
                 "<html>");
         //设置标签的大小
-        //Dimension dimension=new Dimension(85,40);
-        //label.setPreferredSize(dimension);
+        Dimension dimension=new Dimension(150,30);
+        label.setPreferredSize(dimension);
         Box btnbox=Box.createHorizontalBox();//左右显示的box
         Box upbox=Box.createVerticalBox();//上下显示的box
         btnbox.add(startBtn);btnbox.add(nextBtn);

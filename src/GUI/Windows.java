@@ -1,9 +1,11 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Algorithm.*;
+import check.Check;
 
 /**
  * 程序的主界面
@@ -11,6 +13,10 @@ import Algorithm.*;
 public class Windows {
     JFrame jf;
     algorithm al;
+    Boolean ok=false;
+    JButton Button1;
+    JButton Button2;
+    Check check;
 
     /**
      * 主界面的布局设置
@@ -49,7 +55,11 @@ public class Windows {
                 al.algo_init(Integer.parseInt(n_str), Integer.parseInt(m_str));
                 //异常情况处理
                 if(Integer.parseInt(n_str)==1) {
-
+                    inputButton.setEnabled(false);
+                    Button1.setEnabled(true);
+                    Button2.setEnabled(true);
+                    al.g.produce_vex();
+                    return;
                 }
                 //弹出新窗口，读入信息进行建图操作
                 JButton submit;
@@ -86,6 +96,10 @@ public class Windows {
                 jt3.setBounds(140, 140, 100, 30);
                 inputjf.add(jt3);
 
+                //将按钮设置为正常的可以按动
+                Button1.setEnabled(true);
+                Button2.setEnabled(true);
+
                 //其余设置
                 inputjf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 inputjf.setBounds(400, 300, 500, 400);
@@ -119,25 +133,47 @@ public class Windows {
         panel.add(inputButton);
 
         //算法1演示——prim
-        JButton Button1 = new JButton("Prim算法演示");
+        Button1 = new JButton("Prim算法演示");
         Button1.setBounds(320, 100, 150, 25);
         Button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Prim算法演示",-1);
+                if(judgegraph()) {
+                    AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Prim算法演示",-1);
+                } else {
+                    JOptionPane.showMessageDialog(//Yes的返回值是0
+                            jf,
+                            "输入数据错误，快重新输入",
+                            "异常",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    al.g.clear();
+                }
             }
         });
+        Button1.setEnabled(false);
         panel.add(Button1);
 
         //算法2演示——Kruskal
-        JButton Button2 = new JButton("Kruskal算法演示");
+        Button2 = new JButton("Kruskal算法演示");
         Button2.setBounds(320, 130, 150, 25);
         Button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Kruskal算法演示",-1);
+                if(judgegraph()) {
+                    AlgorithmFrame alframe=new AlgorithmFrame(al.g,"Kruskal算法演示",-1);
+                } else {
+                    JOptionPane.showMessageDialog(//Yes的返回值是0
+                            jf,
+                            "输入数据错误,快重新输入",
+                            "异常",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    al.g.clear();
+                }
             }
         });
+        Button2.setEnabled(false);
         panel.add(Button2);
 
         //右侧功能表按钮3-关于我们
@@ -151,7 +187,7 @@ public class Windows {
                 jf_show.setVisible(true);
                 jf_show.setBounds(450, 250, 400, 250);
                 //文本设置
-                JLabel jl_message = new JLabel("B20030603李妍  B20030624周冕  B20030626徐少杰", JLabel.CENTER);
+                JLabel jl_message = new JLabel("B20030603李妍  B20030624周冕 B20030625耿傅生 B20030626徐少杰", JLabel.CENTER);
                 jf_show.add(jl_message);
                 jl_message.setBounds(500, 0, 690, 20);
             }
@@ -191,5 +227,14 @@ public class Windows {
         jf.add(panel);
         placeComponents(panel);
         jf.setVisible(true);
+    }
+
+    /**
+     * 判断输入的图是否为连通图
+     * @return 是是否为连通图
+     */
+    public Boolean judgegraph() {
+        check=new Check(al.g);
+        return check.ischeck();
     }
 }

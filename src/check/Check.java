@@ -26,7 +26,7 @@ public class Check {
      * 并查集判断图是否连通即可
      * @return 图是否连通
      */
-    public Boolean check() {
+    public Boolean ischeck() {
         Edge[] edgedate=g.getE();
         for (int i = 0; i < g.m; ++i) uf.unite(g.e[i].u, g.e[i].v);
         return uf.getSetCount()==1;
