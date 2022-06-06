@@ -7,8 +7,8 @@ public class algorithm {
     public Graph g;//存在建图的信息，包含边集数组与矩阵两种格式
     public int n,m;//算法调用的节点数和边数
     public int cnt;//计数器
-    public Kruskal k;
-    public Prim p;
+    public Kruskal k;//Kruskal执行
+    public Prim p;//prim算法执行
 
     /**
      * algorithm类的无参数初始化

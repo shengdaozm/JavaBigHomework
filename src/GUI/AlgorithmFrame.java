@@ -39,7 +39,7 @@ public class AlgorithmFrame {
         jf.setResizable(false);
 
         // 设置窗口的大小和布局
-        jf.setSize(1000, 700);
+        jf.setSize(900, 700);
         //算法演示窗口分开成上下两个部分
         jf.setLayout(new GridLayout(2,1));
         //初始化第一个面板myPanel->用于显示图形和演示过程--------------------------------+
@@ -55,17 +55,15 @@ public class AlgorithmFrame {
         JButton startBtn = new JButton("开始演示");
         JButton nextBtn = new JButton("下一步");
 
-        JLabel label  = new JLabel("<html><br><br><br>" +
-                "------------------" +
-                "算法演示过程控制端" +
-                "------------------" +
-                "<html>");
-        //设置标签的大小
-        Dimension dimension=new Dimension(150,30);
-        label.setPreferredSize(dimension);
+        JLabel label  = new JLabel(
+                "    <算法演示控制端>" );
+        //设置标签
         Box btnbox=Box.createHorizontalBox();//左右显示的box
         Box upbox=Box.createVerticalBox();//上下显示的box
-        btnbox.add(startBtn);btnbox.add(nextBtn);
+        btnbox.add(new JLabel("                                  "));
+        btnbox.add(startBtn);
+        btnbox.add(new JLabel("                          "));
+        btnbox.add(nextBtn);
         upbox.add(label);upbox.add(btnbox);
         panel.add(upbox);
 
@@ -75,9 +73,9 @@ public class AlgorithmFrame {
 
         // 根据算法名字显示对应的文字
         if ("Prim算法演示".equals(name)) {
-            printgraph.myPanel.staus = "P";
+            printgraph.myPanel.judge = "P";
         }else {
-            printgraph.myPanel.staus = "K";
+            printgraph.myPanel.judge = "K";
         }
 
 //        +--------------------------------------------监听事件-----------------------------------------------+

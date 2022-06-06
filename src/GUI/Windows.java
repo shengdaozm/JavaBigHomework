@@ -1,9 +1,15 @@
 package GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import Algorithm.*;
 import check.Check;
 
@@ -59,6 +65,15 @@ public class Windows {
                     Button1.setEnabled(true);
                     Button2.setEnabled(true);
                     al.g.produce_vex();
+                    return;
+                }
+                if(Integer.parseInt(m_str)==0) {
+                    JOptionPane.showMessageDialog(//Yes的返回值是0
+                            jf,
+                            "输入数据错误，快重新输入",
+                            "异常",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                     return;
                 }
                 //弹出新窗口，读入信息进行建图操作
@@ -183,13 +198,24 @@ public class Windows {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //弹出窗口
-                JFrame jf_show = new JFrame();
+                JFrame jf_show = new JFrame("感谢使用");
                 jf_show.setVisible(true);
-                jf_show.setBounds(450, 250, 400, 250);
-                //文本设置
-                JLabel jl_message = new JLabel("B20030603李妍  B20030624周冕 B20030625耿傅生 B20030626徐少杰", JLabel.CENTER);
-                jf_show.add(jl_message);
-                jl_message.setBounds(500, 0, 690, 20);
+                jf_show.setBounds(450, 250, 360, 350);
+                //图片的插入
+                Image image = null;
+                try {
+                    image = ImageIO.read(new FileInputStream("C:\\Users\\21147\\Desktop\\JavaBigHomework\\src\\images\\team.jpg"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                ImageIcon icon = new ImageIcon(image);
+                JLabel jl_image=new JLabel();
+                jl_image.setIcon(icon);
+                jf_show.add(jl_image);
+                System.out.println("      B20030603李妍");
+                System.out.println("      B20030624周冕");
+                System.out.println("      B20030625耿傅生");
+                System.out.println("      B20030626徐少杰");
             }
         });
         panel.add(Button3);
